@@ -49,6 +49,10 @@ INSTALLED_APPS = [
     'tailwind',
     'ui',
     'django_browser_reload',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
+    'two_factor',
+    'django_otp.plugins.otp_email',
 ]
 
 MIDDLEWARE = [
@@ -59,11 +63,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
+    'django_otp.middleware.OTPMiddleware',
+    'accounts.middleware.EnforceAdmin2FAMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
 TAILWIND_APP_NAME = 'ui'
+AUTH_USER_MODEL = 'accounts.User'
+TWO_FACTOR_REQUIRED_FOR_ADMIN = True
 
 TEMPLATES = [
     {
@@ -135,3 +143,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-email@example.com'
+EMAIL_HOST_PASSWORD = 'your-email-password'

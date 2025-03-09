@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Profile Settings</h2>
+
+<p><strong>Username:</strong> {{ user.username }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
+
+<h3>Two-Factor Authentication</h3>
+<p>TOTP Enabled: {{ totp_enabled|yesno:"✅ Yes,❌ No" }}</p>
+<p>Email OTP Enabled: {{ email_otp_enabled|yesno:"✅ Yes,❌ No" }}</p>
+
+{% if not totp_enabled or not email_otp_enabled %}
+    <a href="{% url '2fa_setup' %}" class="btn btn-primary">Enable 2FA</a>
+{% else %}
+    <a href="{% url 'disable_2fa' %}" class="btn btn-danger">Disable 2FA</a>
+{% endif %}
+
+<a href="{% url 'profile_update' %}" class="btn btn-secondary">Update Profile</a>
+{% endblock %}
