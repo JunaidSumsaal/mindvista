@@ -1,0 +1,9 @@
+{% extends "../_base.html" %}
+{% block content %}
+<h2>Weekly Report ({{ report.start_date }} - {{ report.end_date }})</h2>
+
+<p><strong>Total Focus Time:</strong> {{ report.total_focus_time }} minutes</p>
+<p><strong>Completed Tasks:</strong> {{ report.completed_tasks }}</p>
+<p><strong>Habit Completions:</strong> {{ report.habit_completions }}</p>
+
+{% endblock %}
