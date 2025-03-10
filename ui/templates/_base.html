@@ -1,0 +1,27 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% tailwind_css %}
+  </head>
+
+  <body class="bg-gray-50 font-serif leading-normal tracking-normal">
+    <nav class="fixed top-0 w-full">
+      <a href="{% url 'dashboard:dashboard' %}">🏠 Dashboard</a>
+      <a href="{% url 'goals:goal_list' %}">📌 Goal</a>
+      <a href="{% url 'tasks:task_list' %}">📌 Tasks</a>
+      <a href="{% url 'focus:focus_sessions_list' %}">⏳ Focus</a>
+      <a href="{% url 'notes:notes_list' %}"> Notes</a>
+      <a href="{% url 'habits:habit_list' %}">🔥 Habits</a>
+      <a href="{% url 'reports:weekly_report' %}">📊 Reports</a>
+      <a href="{% url 'accounts:logout' %}">Logout</a>
+    </nav>
+    <main class="flex items-center justify-center h-screen">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
