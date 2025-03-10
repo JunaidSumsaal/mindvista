@@ -1,0 +1,14 @@
+{% extends "../_base.html" %}
+
+{% block content %}
+<h2>{% if form.instance.pk %}Edit{% else %}New{% endif %} Focus Session</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Save</button>
+    <a href="{% url 'focus:focus_sessions_list' %}">Cancel</a>
+</form>
+
+{% endblock %}

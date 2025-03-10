@@ -1,0 +1,32 @@
+{% extends "../_base.html" %}
+
+{% block content %}
+<h2>Focus Session Details</h2>
+
+<p><strong>Task:</strong> {{ focus_session.task.title }}</p>
+<p><strong>Start Time:</strong> {{ focus_session.start_time }}</p>
+<p><strong>End Time:</strong> {{ focus_session.end_time|default:"Ongoing" }}</p>
+<p><strong>Duration:</strong> {{ focus_session.duration }} mins</p>
+<p><strong>Status:</strong> {% if focus_session.completed %} Completed {% else %} Ongoing {% endif %}</p>
+
+{% if not focus_session.completed %}
+    <button class="end-focus" data-session="{{ focus_session.id }}">End Focus</button>
+{% endif %}
+
+<a href="{% url 'focus:focus_sessions_list' %}">Back to Sessions</a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".end-focus")?.addEventListener("click", function () {
+            let sessionId = this.dataset.session;
+            fetch(`/focus/end/${sessionId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    alert(`Focus session ended! Duration: ${data.duration} mins`);
+                    location.reload();
+                });
+        });
+    });
+</script>    
+
+{% endblock %}

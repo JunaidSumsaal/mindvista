@@ -1,0 +1,82 @@
+{% extends "../_base.html" %}
+
+{% block content %}
+<div class="flex flex-col">
+<h2>Focus Sessions</h2>
+<p><a href="{% url 'focus:focus_create' %}">+ Focus session</a></p>
+<table>
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Duration (mins)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        <tr>
+            <td>{{ session.task.title }}</td>
+            <td>{{ session.start_time }}</td>
+            <td>{{ session.end_time|default:"Ongoing" }}</td>
+            <td>{{ session.duration }}</td>
+            <td>
+                {% if not session.completed %}
+                    <button class="end-focus" data-session="{{ session.id }}">End Focus</button>
+                {% endif %}
+                <a href="{% url 'focus:focus_detail' session.id %}">View</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No focus sessions yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Start New Focus Session</h3>
+<ul>
+    {% for task in user.tasks.all %}
+        <li>
+            {{ task.title }}
+            <button class="start-focus" data-task="{{ task.id }}">Start Focus</button>
+        </li>
+        {% empty %}
+        <li>No available tasks.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".start-focus").forEach(button => {
+            button.addEventListener("click", function () {
+                let taskId = this.dataset.task;
+                fetch(`/focus/start/${taskId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.session_id) {
+                            alert("Focus session started!");
+                            location.reload();
+                        } else {
+                            alert(data.error);
+                        }
+                    });
+            });
+        });
+
+        document.querySelectorAll(".end-focus").forEach(button => {
+            button.addEventListener("click", function () {
+                let sessionId = this.dataset.session;
+                fetch(`/focus/end/${sessionId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(`Focus session ended! Duration: ${data.duration} mins`);
+                        location.reload();
+                    });
+            });
+        });
+    });
+</script>    
+
+{% endblock %}

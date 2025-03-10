@@ -1,0 +1,14 @@
+{% extends "../_base.html" %}
+
+{% block content %}
+<h2>Delete Focus Session</h2>
+
+<p>Are you sure you want to delete this focus session?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm Delete</button>
+    <a href="{% url 'focus:focus_sessions_list' %}">Cancel</a>
+</form>
+
+{% endblock %}
