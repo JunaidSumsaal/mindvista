@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ mindmap.title }}</h2>
+<a href="{% url 'mindmaps:add_node' mindmap.id %}">Add Node</a>
+
+<div id="mindmap-container">
+  {% for node_id, node_data in nodes.items %}
+    <div class="node" 
+         data-id="{{ node_id }}"
+         style="position:absolute; left:{{ node_data.position_x }}px; top:{{ node_data.position_y }}px;">
+      {{ node_data.content }}
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".node").forEach(node => {
+        node.draggable = true;
+
+        node.addEventListener("dragstart", (event) => {
+            event.dataTransfer.setData("text/plain", event.target.dataset.id);
+        });
+
+        node.addEventListener("dragend", (event) => {
+            const nodeId = event.target.dataset.id;
+            const newX = event.target.offsetLeft;
+            const newY = event.target.offsetTop;
+
+            fetch("{% url 'mindmaps:update_node_position' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({ node_id: nodeId, position_x: newX, position_y: newY }),
+            });
+        });
+    });
+});
+</script>
+
+<style>
+  #mindmap-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border: 1px solid #ccc;
+  }
+  .node {
+    padding: 10px;
+    background-color: lightblue;
+    border: 1px solid #000;
+    cursor: grab;
+  }
+</style>
+
+{% endblock %}

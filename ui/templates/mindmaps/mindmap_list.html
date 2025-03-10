@@ -1,0 +1,13 @@
+{% extends "../base.html" %}
+{% block content %}
+<h2>My Mind Maps</h2>
+<a href="{% url 'mindmaps:create_mindmap' %}">Create New Mind Map</a>
+
+<ul>
+  {% for mindmap in mindmaps %}
+    <li>
+      <a href="{% url 'mindmaps:mindmap_detail' mindmap.id %}">{{ mindmap.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
