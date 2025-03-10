@@ -1,0 +1,25 @@
+{% extends "../_base.html" %}
+
+{% block content %}
+<h2>{{ habit.name }}</h2>
+<p><strong>Description:</strong> {{ habit.description }}</p>
+<p><strong>Frequency:</strong> {{ habit.get_frequency_display }}</p>
+<p><strong>Streak:</strong> {{ habit.streak }} 🔥</p>
+<p><strong>Last Completed:</strong> {{ habit.last_completed|default:"Never" }}</p>
+
+<h3>Recent Logs</h3>
+<ul>
+    {% for log in logs %}
+        <li>{{ log.date }}</li>
+    {% empty %}
+        <li>No logs yet.</li>
+    {% endfor %}
+</ul>
+
+<form method="post" action="{% url 'habits:log_habit' habit.id %}">
+    {% csrf_token %}
+    <button type="submit">Log Habit</button>
+</form>
+
+<a href="{% url 'habits:habit_list' %}">Back to Habits</a>
+{% endblock %}

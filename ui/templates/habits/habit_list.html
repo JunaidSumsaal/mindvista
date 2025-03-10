@@ -1,0 +1,34 @@
+{% extends "../_base.html" %}
+
+{% block content %}
+<h2>My Habits</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Habit</th>
+            <th>Frequency</th>
+            <th>Streak</th>
+            <th>Last Completed</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for habit in habits %}
+        <tr>
+            <td><a href="{% url 'habits:habit_detail' habit.id %}">{{ habit.name }}</a></td>
+            <td>{{ habit.get_frequency_display }}</td>
+            <td>{{ habit.streak }} 🔥</td>
+            <td>{{ habit.last_completed|default:"Never" }}</td>
+            <td>
+                <form method="post" action="{% url 'habits:log_habit' habit.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Log Habit</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No habits yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
