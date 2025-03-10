@@ -1,0 +1,10 @@
+{% extends "../_base.html" %}
+{% block content %}
+<h2>{% if form.instance.pk %}Edit Goal{% else %}Create Goal{% endif %}</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+    <a href="{% url 'goals:goal_list' %}">Cancel</a>
+</form>
+{% endblock %}
