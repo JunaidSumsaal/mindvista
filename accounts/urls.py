@@ -3,6 +3,8 @@ from .views import disable_2fa, enable_email_otp, enforce_admin_2fa, profile_set
 from two_factor.views import SetupView, BackupTokensView
 from django.contrib.auth import views as auth_views
 
+app_name = "accounts"
+
 urlpatterns = [
     path("register/", register, name="register"),
     path("login/", user_login, name="login"),
