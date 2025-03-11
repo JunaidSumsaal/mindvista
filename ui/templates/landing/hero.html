@@ -1,12 +1,11 @@
 {% load static %}
 <div
-id="hero"
-  class="relative pt-16 pb-32 flex content-center items-center justify-center"
-  style="min-height: 75vh"
+  id="hero"
+  class="relative pt-16 pb-32 flex w-full content-center items-center justify-center min-h-[75vh]"
 >
   <div
-    class="absolute top-0 w-full h-full bg-center bg-cover"
-    style="background-image: url('{% static 'images/bg/bg.png' %}');"
+    class="absolute top-0 w-full h-full bg-center bg-cover bg-no-repeat"
+    style="background-image: url('{% static 'images/bg/bg.png' %}')"
   >
     <span
       id="blackOverlay"
@@ -21,8 +20,8 @@ id="hero"
             Take Control of Your Goals & Productivity
           </h1>
           <p class="mt-4 text-lg text-gray-300">
-            MindVista helps you plan, track, and achieve your dreams with smart goal-setting, 
-            habit tracking, and focus-driven planning.
+            MindVista helps you plan, track, and achieve your dreams with smart
+            goal-setting, habit tracking, and focus-driven planning.
           </p>
         </div>
       </div>
@@ -31,7 +30,7 @@ id="hero"
 </div>
 <div
   class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-  style="height: 70px;"
+  style="height: 70px"
 >
   <svg
     class="absolute bottom-0 overflow-hidden"
@@ -47,5 +46,4 @@ id="hero"
       points="2560 0 2560 100 0 100"
     ></polygon>
   </svg>
-</div>
 </div>
