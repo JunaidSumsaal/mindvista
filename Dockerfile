@@ -33,9 +33,9 @@ RUN python manage.py makemigrations && \
     python manage.py makemigrations django_otp && \
     python manage.py migrate
 
-RUN python manage.py tailwind build
+RUN python manage.py tailwind install && python manage.py tailwind build
 
-COPY ui/static ./ui/static
+RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
