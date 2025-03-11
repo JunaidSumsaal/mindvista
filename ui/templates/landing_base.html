@@ -1,0 +1,43 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>MindVista</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+		<link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+    <link rel="icon" type="image/png" href="{% static 'images/favicon/favicon-96x96.png' %}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon/favicon.svg' %}" />
+    <link rel="shortcut icon" href="{% static 'images/favicon/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}" />
+    <meta name="apple-mobile-web-app-title" content="PeakPlanner" />
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css"
+    />
+	</head>
+	<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+		{% block navigation%}
+		{% include './nav.html' %}
+		{% endblock%}
+			<main>
+				{% block content %}{% endblock %}
+			</main>
+			{% block footer%}
+		{% include './footer.html' %}
+		{% endblock%}
+			<script>
+				function toggleNavbar(collapseID) {
+					document.getElementById(collapseID).classList.toggle("hidden");
+					document.getElementById(collapseID).classList.toggle("block");
+				}
+			</script>
+	</body>
+</html>
