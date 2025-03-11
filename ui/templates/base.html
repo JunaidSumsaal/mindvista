@@ -2,18 +2,23 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    <title>Django Tailwind</title>
+    <title>MindVista</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		{% tailwind_css %}
+		<link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+    <link rel="icon" type="image/png" href="{% static 'images/favicon/favicon-96x96.png' %}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon/favicon.svg' %}" />
+    <link rel="shortcut icon" href="{% static 'images/favicon/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}" />
+    <meta name="apple-mobile-web-app-title" content="PeakPlanner" />
+    <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}" />
 	</head>
 
-	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
-		<div class="container mx-auto">
-			<section class="flex items-center justify-center h-screen">
+	<body class="bg-gray-50 font-sans leading-normal tracking-normal">
+			<main class="flex items-center justify-center h-screen">
 				{% block content %}{% endblock %}
-			</section>
-		</div>
+			</main>
 	</body>
 </html>
