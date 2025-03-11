@@ -1,0 +1,75 @@
+{% load static %}
+<nav
+  class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3"
+>
+  <div
+    class="container px-4 mx-auto flex flex-wrap items-center justify-between"
+  >
+    <div
+      class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
+    >
+      <a
+        class="text-sm font-bold leading-relaxed flex items-center justify-center gap-1 mr-4 py-2 whitespace-nowrap uppercase text-white"
+        href="{% url 'landing:landing' %}"
+        >
+        <img class="w-8 h-8 mr-2" src="{% static 'images/logo/logo.png' %}" alt="logo">
+        MindVista</a
+      ><button
+        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+        type="button"
+        onclick="toggleNavbar('example-collapse-navbar')"
+      >
+        <i class="text-white fas fa-bars"></i>
+      </button>
+    </div>
+    <div
+      class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
+      id="example-collapse-navbar"
+    >
+      {% comment %} <ul class="flex flex-col lg:flex-row list-none mr-auto">
+        <li class="flex items-center">
+          <a
+            class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+            href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/landing"
+            ><i
+              class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"
+            ></i>
+            Docs</a
+          >
+        </li>
+      </ul> {% endcomment %}
+      <ul class="flex flex-col lg:flex-row list-none lg:ml-auto capitalize !lg:text-xl">
+        <li class="flex items-center">
+          <a
+            class="lg:text-white lg:hover:text-primary-500 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs font-bold"
+            href="#features"
+            >features</a
+          >
+        </li>
+        <li class="flex items-center">
+          <a
+            class="lg:text-white lg:hover:text-primary-500 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs font-bold"
+            href="#testimonials"
+            >Testimonials</a
+          >
+        </li>
+        <li class="flex items-center">
+          <a
+            class="lg:text-white lg:hover:text-primary-500 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs font-bold"
+            href="{% url 'accounts:login' %}"
+            >login</a
+          >
+        </li>
+        <li class="flex items-center">
+          <a
+            class="bg-primary-500 text-white active:bg-primary-400 hover:bg-primary-600 text-xs font-bold px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+            href="{% url 'accounts:register' %}"
+            style="transition: all 0.15s ease 0s"
+          >
+            Get Started
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
