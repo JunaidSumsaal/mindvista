@@ -1,49 +1,52 @@
 {% load static %}
-<div
+<section
   id="hero"
-  class="relative pt-16 pb-32 flex w-full content-center items-center justify-center min-h-[75vh]"
+  class="relative bg-center bg-no-repeat bg-gray-700 z-0 bg-blend-multiply"
+  style=" background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('{% static 'images/bg/bg.png' %}')"
 >
-  <div
-    class="absolute top-0 w-full h-full bg-center bg-cover bg-no-repeat"
-    style="background-image: url('{% static 'images/bg/bg.png' %}')"
-  >
-    <span
-      id="blackOverlay"
-      class="w-full h-full absolute opacity-75 bg-black"
-    ></span>
-  </div>
-  <div class="container relative mx-auto">
-    <div class="items-center flex flex-wrap">
-      <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-        <div class="pr-12">
-          <h1 class="text-white font-semibold text-5xl">
-            Take Control of Your Goals & Productivity
-          </h1>
-          <p class="mt-4 text-lg text-gray-300">
-            MindVista helps you plan, track, and achieve your dreams with smart
-            goal-setting, habit tracking, and focus-driven planning.
-          </p>
-        </div>
-      </div>
+  <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56 z-30">
+    <h1
+      class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl"
+    >
+      Master Your Goals, One Task at a Time
+    </h1>
+    <p
+      class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48"
+    >
+      MindVista helps you stay focused, track habits, and manage tasks
+      effortlessly. Build better routines, set milestones, and achieve your
+      goals with a structured workflow.
+    </p>
+    <div
+      class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0"
+    >
+      <a
+        href="{% url 'accounts:register' %}"
+        class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+      >
+        Get Started
+        <svg
+          class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 10"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 5h12m0 0L9 1m4 4L9 9"
+          />
+        </svg>
+      </a>
+      <a
+        href="#features"
+        class="inline-flex justify-center items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-400"
+      >
+        Learn More
+      </a>
     </div>
   </div>
-</div>
-<div
-  class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-  style="height: 70px"
->
-  <svg
-    class="absolute bottom-0 overflow-hidden"
-    xmlns="http://www.w3.org/2000/svg"
-    preserveAspectRatio="none"
-    version="1.1"
-    viewBox="0 0 2560 100"
-    x="0"
-    y="0"
-  >
-    <polygon
-      class="text-gray-100 fill-current"
-      points="2560 0 2560 100 0 100"
-    ></polygon>
-  </svg>
-</div>
+</section>

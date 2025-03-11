@@ -1,87 +1,15 @@
 {% load static %}
-<footer class="relative bg-gray-300 pt-8 pb-6 w-full">
-  <div
-    class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-    style="height: 80px;"
-  >
-    <svg
-      class="absolute bottom-0 overflow-hidden"
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="none"
-      version="1.1"
-      viewBox="0 0 2560 100"
-      x="0"
-      y="0"
-    >
-      <polygon
-        class="text-gray-300 fill-current"
-        points="2560 0 2560 100 0 100"
-      ></polygon>
-    </svg>
-  </div>
-  <div class="container mx-auto px-4">
-    <div class="flex flex-wrap">
-      <div class="w-full lg:w-6/12 px-4">
-        <a
-        class="text-xl font-bold leading-relaxed flex items-center justify-center gap-1 mr-4 py-2 whitespace-nowrap"
-        href="{% url 'landing:landing' %}"
-        >
-        <img class="w-8 h-8 mr-2" src="{% static 'images/logo/logo.png' %}" alt="logo">
-        MindVista</a
-      >
+<footer class="bg-white dark:bg-gray-800">
+  <div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
+      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
+      <div class="text-center">
+          <a href="{% url 'landing:landing' %}" class="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
+              <img src="{% static 'images/logo/logo.png' %}" class="h-6 mr-3 sm:h-9" alt="..." />
+              MindVista    
+          </a>
+          <span class="block text-sm text-center text-gray-500 dark:text-gray-400">© <span id="date"></span> <a href="{% url 'landing:landing' %}" class="text-primary-600 hover:underline dark:text-primary-500">MindVista</a>™. All Rights Reserved.
+          </span>
       </div>
-      <div class="w-full lg:w-6/12 px-4">
-        <div class="flex flex-wrap items-top mb-6">
-          <div class="w-full lg:w-7/12 px-4 ml-auto">
-            <ul class="list-unstyled flex w-full gap-2">
-              <li>
-                <a
-                  class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                  href="{% url 'landing:landing' %}"
-                  >About Us</a
-                >
-              </li>
-              <li>
-                <a
-                  class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                  href="{% url 'landing:landing' %}"
-                  >Blog</a
-                >
-              </li>
-              <li>
-                <a
-                  class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                  href="https://www.github.com/creativetimofficial"
-                  >Features</a
-                >
-              </li>
-              <li>
-                <a
-                  class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                  href="{% url 'landing:landing' %}"
-                  >Testimonials</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr class="my-6 border-gray-400" />
-    <div
-      class="flex flex-wrap items-center md:justify-between justify-center"
-    >
-      <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-        <div class="text-sm text-gray-600 font-semibold py-1">
-          Copyright © <span id="date"></span>
-          <a
-            href="{% url 'landing:landing' %}"
-            class="text-gray-600 hover:text-gray-900"
-            >MindVista</a
-          >.
-        </div>
-      </div>
-    </div>
   </div>
 </footer>
 <script>

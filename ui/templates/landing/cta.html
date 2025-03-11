@@ -1,43 +1,21 @@
-<section class="pb-20 relative block bg-gray-900">
-  <div
-    class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-    style="height: 80px"
-  >
-    <svg
-      class="absolute bottom-0 overflow-hidden"
-      xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="none"
-      version="1.1"
-      viewBox="0 0 2560 100"
-      x="0"
-      y="0"
-    >
-      <polygon
-        class="text-gray-900 fill-current"
-        points="2560 0 2560 100 0 100"
-      ></polygon>
-    </svg>
-  </div>
-  <div class="container mx-auto px-4 lg:pt-24 lg:pb-64">
-    <div class="flex flex-wrap text-center justify-center">
-      <div class="w-full lg:w-6/12 px-4">
-        <h2 class="text-4xl font-semibold text-white">
-          Ready to Take Charge of Your Productivity
-        </h2>
-        <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500">
-          Sign up now and start achieving your goals effortlessly.
-        </p>
-      </div>
-    </div>
-    <div class="flex flex-wrap mt-12 justify-center">
-      <div class="w-full lg:w-3/12 px-4 text-center">
-        <a
-          href="{% url 'accounts:register' %}"
-          class="bg-transparent text-primary-500 hover:text-primary-600 hover:text-underline font-bold py-3 px-6 rounded-lg text-lg"
-        >
-          Get Started for Free
-        </a>
-      </div>
+
+{% load static %}
+<section class="bg-gray-50 dark:bg-gray-800">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
+    <div class="max-w-screen-sm mx-auto text-center">
+      <h2
+        class="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white"
+      >
+        Ready to Take Charge of Your Productivity
+      </h2>
+      <p class="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">
+        Sign up now and start achieving your goals effortlessly.
+      </p>
+      <a
+        href="{% url 'accounts:register'%}"
+        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+        >Free trial for 30 days</a
+      >
     </div>
   </div>
 </section>

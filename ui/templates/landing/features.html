@@ -1,120 +1,94 @@
-<section id="features" class="pb-20 bg-gray-100 -mt-24">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-wrap">
-      <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-        <div
-          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
-        >
-          <div class="px-4 py-5 flex-auto">
-            <div
-              class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400"
-            >
-              🎯
-            </div>
-            <h6 class="text-xl font-semibold">Goal Tracking</h6>
-            <p class="mt-2 mb-4 text-gray-600">
-              Define goals, set milestones, and track progress effortlessly.
-            </p>
+{% load static %}
+<section class="bg-gray-50 dark:bg-gray-800" id="features">
+  <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
+      <!-- Row -->
+      <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
+          <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+              <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+                  Seamlessly Integrate with Your Workflow
+              </h2>
+              <p class="mb-8 font-light lg:text-xl">
+                  MindVista enhances your productivity by integrating smoothly with the tools you already use. 
+                  Whether managing tasks, tracking habits, or running focus sessions, streamline your workflow 
+                  without unnecessary complexity.
+              </p>
+              <!-- List -->
+              <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
+                  <li class="flex space-x-3">
+                      <!-- Icon -->
+                      <svg class="flex-shrink-0 w-5 h-5 text-primary-500 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                          Automated Task & Habit Tracking
+                      </span>
+                  </li>
+                  <li class="flex space-x-3">
+                      <svg class="flex-shrink-0 w-5 h-5 text-primary-500 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                          Focus Sessions for Deep Work
+                      </span>
+                  </li>
+                  <li class="flex space-x-3">
+                      <svg class="flex-shrink-0 w-5 h-5 text-primary-500 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                          Weekly Productivity Reports & Insights
+                      </span>
+                  </li>
+              </ul>
+              <p class="mb-8 font-light lg:text-xl">
+                  Take control of your productivity with a structured, intuitive approach.
+              </p>
           </div>
-        </div>
+          <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="{% static 'images/landing/dashboard.png' %}" alt="MindVista Dashboard">
       </div>
-      <div class="w-full md:w-4/12 px-4 text-center">
-        <div
-          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
-        >
-          <div class="px-4 py-5 flex-auto">
-            <div
-              class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400"
-            >
-              ⏳
-            </div>
-            <h6 class="text-xl font-semibold">Focus Sessions</h6>
-            <p class="mt-2 mb-4 text-gray-600">
-              Stay productive with smart time-tracking for deep work.
-            </p>
+      <!-- Row -->
+      <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
+          <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="{% static 'images/landing/dashboard-1.png' %}" alt="feature image 2">
+          <div class="text-gray-500 sm:text-lg dark:text-gray-400">
+              <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+                  Unlock Your Full Potential
+              </h2>
+              <p class="mb-8 font-light lg:text-xl">
+                  MindVista combines smart planning with efficient execution. Automate repetitive tasks, 
+                  monitor habits, and get real-time insights into your productivity.
+              </p>
+              <!-- List -->
+              <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
+                  <li class="flex space-x-3">
+                      <svg class="flex-shrink-0 w-5 h-5 text-primary-500 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                          Interactive Reports & Progress Analytics
+                      </span>
+                  </li>
+                  <li class="flex space-x-3">
+                      <svg class="flex-shrink-0 w-5 h-5 text-primary-500 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                          AI-Driven Smart Task Prioritization
+                      </span>
+                  </li>
+                  <li class="flex space-x-3">
+                      <svg class="flex-shrink-0 w-5 h-5 text-primary-500 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="text-base font-medium leading-tight text-gray-900 dark:text-white">
+                          Customizable Productivity Templates
+                      </span>
+                  </li>
+              </ul>
+              <p class="font-light lg:text-xl">
+                  Achieve your goals faster with a structured, results-driven system.
+              </p>
           </div>
-        </div>
       </div>
-      <div class="pt-6 w-full md:w-4/12 px-4 text-center">
-        <div
-          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
-        >
-          <div class="px-4 py-5 flex-auto">
-            <div
-              class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400"
-            >
-              📅
-            </div>
-            <h6 class="text-xl font-semibold">Habit Tracker</h6>
-            <p class="mt-2 mb-4 text-gray-600">
-              Track your habits and build positive routines with streak
-              analytics.!
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-wrap items-center mt-32">
-      <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
-        <div
-          class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-primary-600"
-        >
-          <img
-            alt="..."
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1051&amp;q=80"
-            class="w-full align-middle rounded-t-lg"
-          />
-          <blockquote class="relative p-8 mb-4">
-            <svg
-              preserveAspectRatio="none"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 583 95"
-              class="absolute left-0 w-full block"
-              style="height: 95px; top: -94px"
-            >
-              <polygon
-                points="-30,95 583,95 583,65"
-                class="text-primary-600/70 fill-current"
-              ></polygon>
-            </svg>
-            <h4 class="text-xl font-bold text-white">Top Notch Services</h4>
-            <p class="text-md font-light mt-2 text-white">
-              MindVista adapts to your unique productivity rhythm, ensuring a
-              balance between structure and flexibility. Whether you're building
-              habits, organizing tasks, or visualizing ideas, our smart,
-              distraction-free tools help you stay on track and maximize your
-              potential.
-            </p>
-          </blockquote>
-        </div>
-      </div>
-      <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
-        <h3 class="text-3xl mb-2 font-semibold leading-normal">
-          Why Choose MindVista?
-        </h3>
-        <p class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
-          MindVista is more than just a productivity tool it’s your personal
-          companion for goal setting, task management, and mental clarity.
-          Whether you're tracking daily habits, planning long-term projects, or
-          diving into deep focus sessions, MindVista provides an intuitive and
-          visually engaging platform to keep you on track. With powerful
-          features like interactive mind maps, smart reminders, and real-time
-          progress tracking, you can transform your ideas into action
-          effortlessly.
-        </p>
-        <p class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
-          Built for thinkers, doers, and dreamers, MindVista helps you
-          streamline your workflow while fostering creativity and motivation.
-          Its distraction-free interface, seamless organization tools, and
-          intelligent insights ensure that you stay ahead of your tasks without
-          feeling overwhelmed.
-        </p>
-        <a
-          href="{% url 'accounts:register' %}"
-          class="font-bold text-primary-500 hover:text-primary-600 mt-8"
-          >Get Started</a
-        >
-      </div>
-    </div>
   </div>
 </section>
+<!-- End block -->
