@@ -3,7 +3,8 @@ module.exports = {
   content: [
     '../templates/**/*.html',
     '../../templates/**/*.html',
-    '../../**/templates/**/*.html'
+    '../../**/templates/**/*.html',
+    './node_modules/flowbite/**/*.js',
   ],
   theme: {
     extend: {
@@ -32,6 +33,7 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/aspect-ratio')
+    require('@tailwindcss/aspect-ratio'),
+    require('flowbite/plugin')
   ]
 };

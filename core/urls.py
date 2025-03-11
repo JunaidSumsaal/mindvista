@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import include, path
 from two_factor.urls import urlpatterns as tf_urls
+from . import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,3 +19,6 @@ urlpatterns = [
     path("reports/", include("reports.urls", namespace="reports")),
     path("dashboard/", include("dashboard.urls", namespace="dashboard")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
