@@ -1,34 +1,48 @@
-{% extends "../_base.html" %}
-
-{% block content %}
-<h2>My Habits</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Habit</th>
-            <th>Frequency</th>
-            <th>Streak</th>
-            <th>Last Completed</th>
-            <th>Actions</th>
-        </tr>
+{% extends "../_base.html" %} {% block content %}
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-4 min-w-full">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Habit</th>
+        <th scope="col" class="px-6 py-3">Frequency</th>
+        <th scope="col" class="px-6 py-3">Streak</th>
+        <th scope="col" class="px-6 py-3">Last Completed</th>
+        <th scope="col" class="px-6 py-3">Action</th>
+      </tr>
     </thead>
     <tbody>
-        {% for habit in habits %}
-        <tr>
-            <td><a href="{% url 'habits:habit_detail' habit.id %}">{{ habit.name }}</a></td>
-            <td>{{ habit.get_frequency_display }}</td>
-            <td>{{ habit.streak }} 🔥</td>
-            <td>{{ habit.last_completed|default:"Never" }}</td>
-            <td>
-                <form method="post" action="{% url 'habits:log_habit' habit.id %}">
-                    {% csrf_token %}
-                    <button type="submit">Log Habit</button>
-                </form>
-            </td>
-        </tr>
-        {% empty %}
-        <tr><td colspan="5">No habits yet.</td></tr>
-        {% endfor %}
+      {% for habit in habits %}
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+      >
+        <th
+          scope="row"
+          class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          <a href="{% url 'goals:goal_detail' goal.pk %}">
+            {{ habit.name|capfirst }}
+          </a>
+        </th>
+        <td class="px-6 py-4">{{ habit.get_frequency_display }}</td>
+        <td class="px-6 py-4">{{ habit.streak }}🔥</td>
+        <td class="px-6 py-4">{{ habit.last_completed|default:"Never" }}</td>
+        <td class="px-6 py-4 relative">
+          <form method="post" action="{% url 'habits:log_habit' habit.id %}">
+            {% csrf_token %}
+            <button type="submit">Log Habit</button>
+          </form>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td class="py-3 px-5">No Habits yet</td>
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
+  </table>
+</div>
 {% endblock %}

@@ -1,10 +1,41 @@
-{% extends "../_base.html" %}
-{% block content %}
-<div class="flex flex-col">
-<h2>Weekly Report ({{ report.start_date }} - {{ report.end_date }})</h2>
-
-<p><strong>Total Focus Time:</strong> {{ report.total_focus_time }} minutes</p>
-<p><strong>Completed Tasks:</strong> {{ report.completed_tasks }}</p>
-<p><strong>Habit Completions:</strong> {{ report.habit_completions }}</p>
+{% extends "../_base.html" %} {% block content %}
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-4 min-w-full">
+  <div
+    class="flex justify-start text-sm bg-white px-6 font-medium text-start text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700"
+  >
+    <h2 class="w-full py-8 text-2xl">
+      <span class="text-primary-600">
+        Weekly Report ({{ report.start_date }} - {{ report.end_date }})
+      </span>
+    </h2>
+  </div>
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Total Focus Time</th>
+        <th scope="col" class="px-6 py-3">Completed Tasks</th>
+        <th scope="col" class="px-6 py-3">Habit Completions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if report %}
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+      >
+        <td class="px-6 py-4">{{ report.total_focus_time }} minutes</td>
+        <td class="px-6 py-4">{{ report.completed_tasks }}</td>
+        <td class="px-6 py-4">{{ report.habit_completions }}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="5">No weekly report</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}

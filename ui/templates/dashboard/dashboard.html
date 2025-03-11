@@ -160,6 +160,7 @@
           </thead>
           <tbody>
             {% for session in focus_sessions %}
+            {% if forloop.counter <= 6 %}
             <tr>
               <td class="py-3 px-5 border-b border-primary-gray-50">
                 <div class="flex items-center gap-4">
@@ -179,6 +180,7 @@
                 </p>
               </td>
             </tr>
+            {% endif %}
             {% empty %}
             <tr>
               <td class="py-3 px-5">No focus sessions yet.</td>
@@ -230,6 +232,7 @@
           </thead>
           <tbody>
             {% for habit in habits %}
+            {% if forloop.counter <= 6 %}
             <tr>
               <td class="py-3 px-5 border-b border-primary-gray-50">
                 <div class="flex items-center gap-4">
@@ -249,6 +252,7 @@
                 </p>
               </td>
             </tr>
+            {% endif %}
             {% empty %}
             <tr>
               <td class="py-3 px-5">No habits tracked yet.</td>
@@ -302,8 +306,9 @@
           </thead>
           <tbody>
             {% for task in tasks %}
+            {% if forloop.counter <= 6 %}
             <tr>
-              <td class="py-3 px-5 border-b border-primary-gray-50">
+              <td class="py-3 px-5 border-b last:border-none border-primary-gray-50">
                 <div class="flex items-center gap-4">
                   <p
                     class="block antialiased font-sans text-sm leading-normal text-primary-gray-900 font-bold"
@@ -321,6 +326,7 @@
                 </p>
               </td>
             </tr>
+            {% endif %}
             {% empty %}
             <tr>
               <td class="py-3 px-5">No pending tasks 🎉</td>

@@ -1,11 +1,50 @@
 {% extends "../_base.html" %}
+{% block title %}
+  {% if form.instance.id %} Edit Note {% else %} Add Note {% endif %}
+{% endblock %}
 
 {% block content %}
-<h2>{% if form.instance.id %}Edit{% else %}Add{% endif %} Note</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-    <a href="{% url 'notes:notes_list' %}" class="btn btn-secondary">Cancel</a>
-</form>
+<div class="container mx-auto px-4 py-8 min-h-screen flex flex-col justify-center items-center">
+  <div class="max-w-2xl w-full bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-semibold mb-4">
+      {% if form.instance.id %} Edit {% else %} Add {% endif %} Note
+    </h2>
+
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+
+      <div>
+        <label for="id_title" class="block text-sm font-medium text-gray-700">Title</label>
+        {{ form.title }}
+      </div>
+
+      <div>
+        <label for="id_content" class="block text-sm font-medium text-gray-700">Content</label>
+        {{ form.content }}
+      </div>
+
+      <div>
+        <label for="id_goal" class="block text-sm font-medium text-gray-700">Goal</label>
+        {{ form.goal }}
+      </div>
+
+      <div>
+        <label for="id_task" class="block text-sm font-medium text-gray-700">Task</label>
+        {{ form.task }}
+      </div>
+
+      <div>
+        <label for="id_milestone" class="block text-sm font-medium text-gray-700">Milestone</label>
+        {{ form.milestone }}
+      </div>
+
+      <div class="flex justify-between items-center mt-4">
+        <button type="submit" class="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-500">
+          Save Note
+        </button>
+        <a href="{% url 'notes:notes_list' %}" class="text-gray-500 hover:text-gray-700">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

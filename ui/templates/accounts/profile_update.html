@@ -1,11 +1,28 @@
 {% extends '../_base.html' %}
+{% block title %} Update Profile {% endblock %}
 {% block content %}
-<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
-    <h2 class="text-2xl font-semibold text-center">Update Profile</h2>
-    <form method="post">
+<div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg mt-12">
+    <h2 class="text-2xl font-semibold text-center mb-4">Update Profile</h2>
+    <form method="post" class="space-y-4">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded w-full">Update</button>
+
+        <div>
+            <label for="id_username" class="block text-sm font-medium text-gray-700">Username</label>
+            <input type="text" name="username" id="id_username" value="{{ form.username.value|default:'' }}"
+                   class="block w-full p-2.5 text-sm border border-gray-300 rounded-lg focus:ring-primary-600 focus:border-primary-600"
+                   placeholder="Enter username" required>
+        </div>
+
+        <div>
+            <label for="id_email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" name="email" id="id_email" value="{{ form.email.value|default:'' }}"
+                   class="block w-full p-2.5 text-sm border border-gray-300 rounded-lg focus:ring-primary-600 focus:border-primary-600"
+                   placeholder="Enter email" required>
+        </div>
+
+        <button class="mt-4 bg-primary-600 text-white px-4 py-2 rounded w-full hover:bg-primary-500">
+            Update
+        </button>
     </form>
 </div>
 {% endblock %}
