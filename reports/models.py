@@ -25,7 +25,7 @@ class WeeklyReport(models.Model):
         ).aggregate(models.Sum("duration"))["duration__sum"] or 0
 
         self.completed_tasks = Task.objects.filter(
-            user=self.user, completed=True, completed_at__date__range=[self.start_date, self.end_date]
+            user=self.user, status="completed", completed_at__date__range=[self.start_date, self.end_date]
         ).count()
 
         self.habit_completions = Habit.objects.filter(
