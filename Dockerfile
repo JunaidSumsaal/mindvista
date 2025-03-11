@@ -35,9 +35,9 @@ RUN python manage.py makemigrations django_otp
 RUN python manage.py migrate
 RUN python manage.py tailwind build
 
-RUN mkdir -p /app/staticfiles
+# RUN mkdir -p /app/staticfiles
 
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
