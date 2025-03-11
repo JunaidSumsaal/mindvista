@@ -27,6 +27,7 @@
     "tailwindcss": "^3.3.2"
   },
   "dependencies": {
+    "@rollup/pluginutils": "^5.1.4",
     "flowbite": "^3.1.2"
   }
 }

@@ -1,14 +1,15 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from distutils.util import strtobool
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-@ybd70fy62atvg(a_!_26!610#$bzgfvd^6$fn3z8(2@y&opz2)%')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-default-key')
 
-DEBUG = os.getenv('DJANGO_DEBUG', 'True')
+DEBUG = bool(strtobool(os.getenv('DJANGO_DEBUG', 'True')))
 
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', "*").split(',')
 
@@ -31,7 +32,6 @@ INSTALLED_APPS = [
     'dashboard',
     'tailwind',
     'ui',
-    # 'django_browser_reload',
     'django_otp',
     'django_otp.plugins.otp_totp',
     'two_factor',
@@ -46,7 +46,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'django_browser_reload.middleware.BrowserReloadMiddleware',
     'django_otp.middleware.OTPMiddleware',
     'accounts.middleware.EnforceAdmin2FAMiddleware',
 ]
@@ -80,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -89,43 +87,37 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
-
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
+STATIC_URL = '/static/'
+
+TAILWIND_CSS_OUTPUT_DIR = BASE_DIR / "ui/static/css/dist"
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'ui', 'static_src'),
-    os.path.join(BASE_DIR, 'ui', 'static')
+    # BASE_DIR / "ui/static_src",
+    BASE_DIR / "ui/static",
+    TAILWIND_CSS_OUTPUT_DIR,
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+
+WHITENOISE_SKIP_COMPRESS_EXTENSIONS = {"map"}
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
