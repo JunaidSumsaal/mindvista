@@ -1,19 +1,128 @@
-{% extends "../_base.html" %}
-{% block content %}
-<h3>Milestones</h3>
-<a href="{% url 'goals:milestone_create' goal.pk %}">Add Milestone</a>
-<h2>{{ goal.title }}</h2>
-<p>{{ goal.description }}</p>
-<p>Due Date: {{ goal.due_date }}</p>
-<ul class="flex">
-    {% for milestone in milestones %}
-        <li>{{ milestone.title }} - {{ milestone.get_status_display }}</li>
-        <a href="{% url 'goals:milestone_update' milestone.pk %}">Edit</a>
-        <form action="{% url 'goals:milestone_delete' milestone.pk %}" method="POST">
-            {% csrf_token %}
-            <button type="submit">Delete</button>
-        </form>
-    {% endfor %}
-</ul>
-<a href="{% url 'goals:goal_list' %}">Back to Goals</a>
+{% extends "../_base.html" %} {% block content %}
+<div class="w-full flex flex-col justify-start items-center h-screen pt-12">
+  <div
+    class="w-full max-w-4xl bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
+  >
+    <div class="flex justify-end w-full py-6 px-4">
+      <a href="{% url 'goals:goal_list' %}" class="flex justify-center items-center p-2 hover:text-primary-500">
+        <svg
+          class="w-4 h-4 me-2 hover:fill-primary-500"
+          aria-hidden="true"
+          fill="#000000"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M4.70710678,16 L7.85355339,19.1464466 C8.04881554,19.3417088 8.04881554,19.6582912 7.85355339,19.8535534 C7.65829124,20.0488155 7.34170876,20.0488155 7.14644661,19.8535534 L3.14644661,15.8535534 C2.95118446,15.6582912 2.95118446,15.3417088 3.14644661,15.1464466 L7.14644661,11.1464466 C7.34170876,10.9511845 7.65829124,10.9511845 7.85355339,11.1464466 C8.04881554,11.3417088 8.04881554,11.6582912 7.85355339,11.8535534 L4.70710678,15 L18.5,15 C19.3284271,15 20,14.3284271 20,13.5 L20,7.5 C20,6.67157288 19.3284271,6 18.5,6 L3.5,6 C3.22385763,6 3,5.77614237 3,5.5 C3,5.22385763 3.22385763,5 3.5,5 L18.5,5 C19.8807119,5 21,6.11928813 21,7.5 L21,13.5 C21,14.8807119 19.8807119,16 18.5,16 L4.70710678,16 Z"
+            ></path>
+          </g>
+        </svg>
+        <span class="ml:auto">Goals</span></a
+      >
+    </div>
+    <div
+      class="flex flex-col items-center pb-10 w-full p-4 border-b border-gray-200"
+    >
+      <h1 class="capitalize text-2xl">{{ goal.title }}</h1>
+      <span class="text-sm text-gray-500 dark:text-gray-400"
+        >{{ goal.description }}</span
+      >
+      <h5 class="mb-1 text-md font-medium text-gray-900 dark:text-white">
+        Due Date:
+        <span class="text-sm text-gray-500 dark:text-gray-400"
+          >{{ goal.due_date }}</span
+        >
+      </h5>
+    </div>
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Name</th>
+          <th scope="col" class="px-6 py-3">Status</th>
+          <th scope="col" class="px-6 py-3">Description</th>
+          <th scope="col" class="px-6 py-3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for milestone in milestones %}
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            {{ milestone.title|capfirst }}
+          </th>
+          <td class="px-6 py-4">
+            <div class="flex items-center" title="{{ status|capfirst }}">
+              <div
+                class="h-2.5 w-2.5 rounded-full me-2 {% if milestone.status == 'pending' %} bg-gray-500 {% elif milestone.status == 'in_progress' %} bg-yellow-500 {% elif milestone.status == 'completed' %} bg-green-500 {% endif %}"
+              ></div>
+              <span
+                >{{milestone.status|capfirst|default:"Unknown"|cut:"_"|join:""}}</span>
+            </div>
+          </td>
+          <td class="px-6 py-4">{{ milestone.description }}</td>
+          <td class="px-6 py-4">
+            <button
+              id="dropdownButton"
+              data-dropdown-toggle="dropdown"
+              class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+              type="button"
+            >
+              <span class="sr-only">Open dropdown</span>
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 16 3"
+              >
+                <path
+                  d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"
+                />
+              </svg>
+            </button>
+            <!-- Dropdown menu -->
+            <div
+              id="dropdown"
+              class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
+            >
+              <ul class="py-2" aria-labelledby="dropdownButton">
+                <li>
+                  <a
+                    href="{% url 'goals:milestone_update' milestone.pk %}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >Edit</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="{% url 'goals:milestone_delete' milestone.pk %}"
+                    class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                    >Delete</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
 {% endblock %}

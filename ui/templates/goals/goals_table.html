@@ -1,0 +1,127 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Name</th>
+        <th scope="col" class="px-6 py-3">Status</th>
+        <th scope="col" class="px-6 py-3">Description</th>
+        <th scope="col" class="px-6 py-3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for goal in goals %}
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+      >
+        <th
+          scope="row"
+          class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          <a href="{% url 'goals:goal_detail' goal.pk %}">
+            {{ goal.title|capfirst }}
+          </a>
+        </th>
+        <td class="px-6 py-4">
+          <div class="flex items-center" title="{{ status|capfirst }}">
+            <div
+              class="h-2.5 w-2.5 rounded-full me-2 {% if goal.status == 'pending' %} bg-gray-500 {% elif goal.status == 'in_progress' %} bg-yellow-500 {% elif goal.status == 'completed' %} bg-green-500 {% endif %}"
+            ></div>
+            <span
+              >{{ goal.status|capfirst|default:"Unknown"|cut:"_"|join:""}}</span
+            >
+          </div>
+        </td>
+        <td class="px-6 py-4">{{ goal.description }}</td>
+        <td class="px-6 py-4 relative">
+          <button
+            class="dropdown-button inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+            type="button"
+            data-id="{{ goal.pk }}"
+          >
+            <span class="sr-only">Open dropdown</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 16 3"
+            >
+              <path
+                d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"
+              />
+            </svg>
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  <div
+    id="dropdown-menu"
+    class="z-50 hidden absolute bg-white divide-y divide-gray-100 rounded-lg shadow-md w-44 dark:bg-gray-700"
+  >
+    <ul class="py-2">
+      <li>
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          id="add-milestone"
+        >
+          Add Milestone
+        </a>
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          id="edit-goal"
+        >
+          Edit
+        </a>
+      </li>
+      <li>
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          id="delete-goal"
+        >
+          Delete
+        </a>
+      </li>
+    </ul>
+  </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".dropdown-button");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", function (event) {
+        event.stopPropagation();
+
+        const rect = button.getBoundingClientRect();
+        
+        dropdownMenu.style.top = `${rect.bottom + window.scrollY}px`;
+        dropdownMenu.style.left = `${rect.left + window.scrollX}px`;
+
+        const goalId = button.getAttribute("data-id");
+        document.getElementById("add-milestone").href = `/goals/${goalId}/milestone/create/`;
+        document.getElementById("edit-goal").href = `/goals/${goalId}/update/`;
+        document.getElementById("delete-goal").href = `/goals/${goalId}/delete/`;
+
+        dropdownMenu.classList.toggle("hidden");
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.add("hidden");
+      }
+    });
+  });
+</script>

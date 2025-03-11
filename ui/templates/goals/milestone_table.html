@@ -1,0 +1,53 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Name</th>
+        <th scope="col" class="px-6 py-3">Status</th>
+        <th scope="col" class="px-6 py-3">Description</th>
+        <th scope="col" class="px-6 py-3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for milestone in milestones %}
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+      >
+        <th
+          scope="row"
+          class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          <a href="{% url 'goals:milestone_detail' milestone.pk %}"> {{ milestone.title }} </a>
+        </th>
+        <td class="px-6 py-4">
+          <div class="flex items-center" title="{{ status|capfirst }}">
+            <div 
+            class="h-2.5 w-2.5 rounded-full me-2 
+            {% if milestone.status == 'pending' %} bg-gray-500 {% elif milestone.status == 'in_progress' %} bg-yellow-500 {% elif milestone.status == 'completed' %} bg-green-500 {% endif %}">
+          </div>
+          <span>{{ milestone.status|capfirst|default:"Unknown"|cut:"_"|join:""  }}</span>
+        </div>
+        
+      </td>
+      <td class="px-6 py-4">{{ milestone.description }}</td>
+        <td class="px-6 py-4">
+          <a
+            href="{% url 'goals:milestone_update' milestone.pk %}
+            class="font-medium text-primary-600 dark:text-primary-500 hover:underline"
+            >Edit</a
+          >
+          <a
+            href="{% url 'goals:milestone_delete' milestone.pk %}"
+            class="font-medium !text-red-600 ml:auto !dark:text-red-500 hover:underline"
+            >Delete</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
