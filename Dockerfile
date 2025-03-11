@@ -28,9 +28,10 @@ COPY . .
 
 VOLUME ["/app/media", "/app/staticfiles"]
 
-RUN python manage.py makemigrations
-RUN python manage.py makemigrations django_otp
-RUN python manage.py migrate
+RUN python manage.py makemigrations && \
+    python manage.py migrate && \
+    python manage.py makemigrations django_otp && \
+    python manage.py migrate
 
 RUN python manage.py tailwind build
 

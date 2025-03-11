@@ -119,8 +119,8 @@ STORAGES = {
 }
 
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, 'ui', 'static_src'),
-    os.path.join(BASE_DIR, 'ui', 'static')
+    os.path.join(BASE_DIR, 'ui', 'static_src'),
+    # os.path.join(BASE_DIR, 'ui', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
