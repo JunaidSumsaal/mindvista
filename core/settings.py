@@ -8,9 +8,9 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-@ybd70fy62atvg(a_!_26!610#$bzgfvd^6$fn3z8(2@y&opz2)%')
 
-DEBUG = os.getenv('DJANGO_DEBUG', 'True') == "True"
+DEBUG = os.getenv('DJANGO_DEBUG', 'True')
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', "*").split(',')
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', "mindvista.onrender.com").split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
