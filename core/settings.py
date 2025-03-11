@@ -112,9 +112,19 @@ USE_I18N = True
 
 USE_TZ = True
 
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
+WHITENOISE_IGNORE_FILES = ["node_modules/*", "*.map"]
+
+
 
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, 'ui', 'static_src'),
+    os.path.join(BASE_DIR, 'ui', 'static_src'),
     os.path.join(BASE_DIR, 'ui', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
