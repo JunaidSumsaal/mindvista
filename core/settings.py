@@ -119,16 +119,14 @@ STORAGES = {
 }
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'ui', 'static_src'),
+    # os.path.join(BASE_DIR, 'ui', 'static_src'),
     os.path.join(BASE_DIR, 'ui', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-WHITENOISE_KEEP_ONLY_HASHED_FILES = True
-WHITENOISE_IGNORE_FILES = ["node_modules/*", "*.map"]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
