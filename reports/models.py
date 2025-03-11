@@ -18,18 +18,21 @@ class WeeklyReport(models.Model):
 
     def generate_report(self):
         """
-        Aggregates data for the given week.
+        Aggregates data for the given week based on session times and durations.
         """
-        self.total_focus_time = FocusSession.objects.filter(
-            user=self.user, start_time__date__range=[self.start_date, self.end_date]
-        ).aggregate(models.Sum("duration"))["duration__sum"] or 0
+        focus_sessions = FocusSession.objects.filter(
+            user=self.user, 
+            start_time__date__range=[self.start_date, self.end_date]
+        )
+
+        self.total_focus_time = sum(session.duration for session in focus_sessions)
 
         self.completed_tasks = Task.objects.filter(
-            user=self.user, status="completed", completed_at__date__range=[self.start_date, self.end_date]
+            user=self.user, status="completed"
         ).count()
 
         self.habit_completions = Habit.objects.filter(
-            user=self.user, logs__date__range=[self.start_date, self.end_date]
+            user=self.user
         ).count()
 
         self.save()
