@@ -112,16 +112,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-WHITENOISE_KEEP_ONLY_HASHED_FILES = True
-
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-]
-
-WHITENOISE_IGNORE_FILES = ["node_modules/*", "*.map"]
-
-
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage", 
+    },
+}
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'ui', 'static_src'),
@@ -129,13 +124,13 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+WHITENOISE_IGNORE_FILES = ["node_modules/*", "*.map"]
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
