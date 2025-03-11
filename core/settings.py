@@ -112,18 +112,16 @@ USE_I18N = True
 
 USE_TZ = True
 
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage", 
-    },
-}
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'ui', 'static_src'),
-    # os.path.join(BASE_DIR, 'ui', 'static')
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "ui", "static_src")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
+
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+WHITENOISE_IGNORE_FILES = ["node_modules/*", "*.map"]
+TAILWIND_IGNORE_PATTERNS = ["node_modules/*", "*.map"]
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
