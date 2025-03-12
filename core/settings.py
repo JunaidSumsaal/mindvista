@@ -49,6 +49,7 @@ MIDDLEWARE = [
     # 'django_browser_reload.middleware.BrowserReloadMiddleware',
     'django_otp.middleware.OTPMiddleware',
     'accounts.middleware.EnforceAdmin2FAMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
