@@ -1,20 +1,53 @@
 {% extends "../dashboard_base.html" %}
-
 {% block content %}
-<h2>Focus Session Details</h2>
+<div class="w-full flex flex-col justify-start items-center h-screen pt-12">
+    <div class="w-full max-w-4xl bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      
+      <!-- Back Button -->
+      <div class="flex justify-end w-full py-6 px-4">
+        <a href="{% url 'focus:focus_sessions_list' %}" class="flex justify-center items-center p-2 hover:text-primary-500">
+          <svg class="w-4 h-4 me-2 hover:fill-primary-500" aria-hidden="true" fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.70710678,16 L7.85355339,19.1464466 C8.04881554,19.3417088 8.04881554,19.6582912 7.85355339,19.8535534 C7.65829124,20.0488155 7.34170876,20.0488155 7.14644661,19.8535534 L3.14644661,15.8535534 C2.95118446,15.6582912 2.95118446,15.3417088 3.14644661,15.1464466 L7.14644661,11.1464466 C7.34170876,10.9511845 7.65829124,10.9511845 7.85355339,11.1464466 C8.04881554,11.3417088 8.04881554,11.6582912 7.85355339,11.8535534 L4.70710678,15 L18.5,15 C19.3284271,15 20,14.3284271 20,13.5 L20,7.5 C20,6.67157288 19.3284271,6 18.5,6 L3.5,6 C3.22385763,6 3,5.77614237 3,5.5 C3,5.22385763 3.22385763,5 3.5,5 L18.5,5 C19.8807119,5 21,6.11928813 21,7.5 L21,13.5 C21,14.8807119 19.8807119,16 18.5,16 L4.70710678,16 Z"></path>
+          </svg>
+          <span class="ml-auto">Focus Sessions</span>
+        </a>
+      </div>
 
-<p><strong>Task:</strong> {{ focus_session.task.title }}</p>
-<p><strong>Start Time:</strong> {{ focus_session.start_time }}</p>
-<p><strong>End Time:</strong> {{ focus_session.end_time|default:"Ongoing" }}</p>
-<p><strong>Duration:</strong> {{ focus_session.duration }} mins</p>
-<p><strong>Status:</strong> {% if focus_session.completed %} Completed {% else %} Ongoing {% endif %}</p>
+      <!-- Focus Session Details -->
+      <div class="flex flex-col items-center pb-10 w-full p-4 border-b border-gray-200">
+        <h1 class="capitalize text-2xl font-semibold text-gray-900 dark:text-white">Focus Session</h1>
+        
+        <h5 class="mb-1 text-md font-medium text-gray-900 dark:text-white">
+          Task: <span class="text-primary-600 dark:text-primary-400">{{ focus_session.task.title }}</span>
+        </h5>
 
-{% if not focus_session.completed %}
-    <button class="end-focus" data-session="{{ focus_session.id }}">End Focus</button>
-{% endif %}
+        <h5 class="mb-1 text-md font-medium text-gray-900 dark:text-white">
+          Start Time: <span class="text-gray-500 dark:text-gray-400">{{ focus_session.start_time }}</span>
+        </h5>
 
-<a href="{% url 'focus:focus_sessions_list' %}">Back to Sessions</a>
+        <h5 class="mb-1 text-md font-medium text-gray-900 dark:text-white">
+          End Time: <span class="text-gray-500 dark:text-gray-400">{{ focus_session.end_time|default:"Ongoing" }}</span>
+        </h5>
 
+        <h5 class="mb-1 text-md font-medium text-gray-900 dark:text-white">
+          Duration: <span class="text-gray-500 dark:text-gray-400">{{ focus_session.duration }} mins</span>
+        </h5>
+
+        <h5 class="mb-1 text-md font-medium text-gray-900 dark:text-white">
+          Status:
+          <span class="{% if focus_session.completed %} text-green-500 {% else %} text-yellow-500 {% endif %}">
+            {% if focus_session.completed %} Completed {% else %} Ongoing {% endif %}
+          </span>
+        </h5>
+
+        {% if not focus_session.completed %}
+          <button class="end-focus mt-4 px-4 py-2 text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800" data-session="{{ focus_session.id }}">
+            End Focus Session
+          </button>
+        {% endif %}
+      </div>
+    </div>
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".end-focus")?.addEventListener("click", function () {
@@ -27,6 +60,5 @@
                 });
         });
     });
-</script>    
-
+</script>
 {% endblock %}
